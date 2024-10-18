@@ -1,4 +1,4 @@
-# AI Search Algorithm Implementations
+# CIA-1 AI Search Algorithm Implementations
 
 This repository contains implementations of various algorithms commonly used in search and optimization problems. Each algorithm is described below, along with its purpose and key characteristics.
 
@@ -68,6 +68,65 @@ This repository contains implementations of various algorithms commonly used in 
 - **Description**: A pathfinding algorithm that combines the strengths of Dijkstra's Algorithm and heuristics to find the shortest path efficiently.
 - **Complexity**: O(E) where E is the number of edges.
 - **Use Cases**: Widely used in AI for navigation and pathfinding in games.
+
+# CIA-2 Minimax and Alpha-Beta Pruning Algorithms
+
+## Overview
+
+This repository provides an explanation of two fundamental algorithms used in decision-making processes for games and artificial intelligence: **Minimax** and **Alpha-Beta Pruning**. These algorithms are essential for optimizing decision-making in two-player zero-sum games where players alternately choose moves to maximize their chances of winning.
+
+### Table of Contents
+1. [Minimax Algorithm](#minimax-algorithm)
+   - [How It Works](#how-it-works)
+   - [Iteration Table](#iteration-table)
+2. [Alpha-Beta Pruning Algorithm](#alpha-beta-pruning-algorithm)
+   - [How It Works](#how-it-works-1)
+   - [Iteration Table](#iteration-table-1)
+3. [Conclusion](#conclusion)
+
+## Minimax Algorithm
+
+### How It Works
+
+The Minimax algorithm works by recursively exploring all possible moves in a game tree. At each level of the tree:
+- The maximizing player tries to choose the move that maximizes their score.
+- The minimizing player tries to choose the move that minimizes the maximizing player’s score.
+
+The algorithm evaluates the tree from the leaf nodes up to the root, using the following principles:
+- **Maximizing:** The maximizing player aims to select the child node with the highest value.
+- **Minimizing:** The minimizing player aims to select the child node with the lowest value.
+
+### Iteration Table
+
+| Iteration | Depth | Node Index | Maximizing/Minimizing | Leaf Value | Best Value | Alpha | Beta | Action                |
+|-----------|-------|------------|-----------------------|------------|------------|-------|------|-----------------------|
+| 1         | 3     | 0          | Maximizing            | -          | -∞         | -∞    | +∞  | Start Maximizing      |
+| 2         | 2     | 0          | Minimizing            | -          | +∞         | -∞    | +∞  | Recur to Node 1      |
+| ...       | ...   | ...        | ...                   | ...        | ...        | ...   | ...  | ...                   |
+| 20        | 1     | 0          | Maximizing            | -          | 9          | 9     | +∞  | Final Optimal Value   |
+
+## Alpha-Beta Pruning Algorithm
+
+### How It Works
+
+Alpha-Beta Pruning is an optimization technique for the Minimax algorithm. It reduces the number of nodes evaluated in the search tree by pruning branches that cannot influence the final decision:
+- **Alpha** is the best value that the maximizing player can guarantee at that level or above.
+- **Beta** is the best value that the minimizing player can guarantee at that level or above.
+
+By comparing these values, the algorithm can skip evaluating branches that will not affect the outcome.
+
+### Iteration Table
+
+| Iteration | Depth | Node Index | Maximizing/Minimizing | Leaf Value | Best Value | Alpha | Beta | Action                |
+|-----------|-------|------------|-----------------------|------------|------------|-------|------|-----------------------|
+| 1         | 3     | 0          | Maximizing            | -          | -∞         | -∞    | +∞  | Start Maximizing      |
+| 2         | 2     | 0          | Minimizing            | -          | +∞         | -∞    | +∞  | Recur to Node 1      |
+| ...       | ...   | ...        | ...                   | ...        | ...        | ...   | ...  | ...                   |
+| 20        | 1     | 0          | Maximizing            | -          | 9          | 9     | +∞  | Final Optimal Value   |
+
+## Conclusion
+
+The Minimax and Alpha-Beta Pruning algorithms are fundamental in creating AI that can play games strategically. The Minimax algorithm ensures that players can make the best possible moves, while Alpha-Beta Pruning optimizes this process, reducing the number of nodes that need to be evaluated, thus improving efficiency.
 
 ## Getting Started
 
