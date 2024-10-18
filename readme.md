@@ -1,102 +1,123 @@
-# Algorithm Implementations
+# Graph Search Algorithms & Game Theory Techniques
 
-This repository contains implementations of various algorithms commonly used in search and optimization problems. Each algorithm is described below, along with its purpose and key characteristics.
+## Overview
+This repository showcases implementations of various graph search algorithms alongside decision-making methods commonly used in game theory. The objective is to identify optimal paths in a graph, moving from a starting node \( S \) to a goal node \( G \), while also exploring strategies like the Minimax algorithm and Alpha-Beta Pruning.
 
-## Table of Contents
-1. [British Museum Search](#british-museum-search)
-2. [Depth-First Search (DFS)](#depth-first-search-dfs)
-3. [Breadth-First Search (BFS)](#breadth-first-search-bfs)
-4. [Hill Climbing](#hill-climbing)
-5. [Beam Search](#beam-search)
-6. [Oracle](#oracle)
-7. [Branch and Bound (B&B)](#branch-and-bound-bb)
-8. [Branch & Bound Greedy](#branch--bound-greedy)
-9. [Branch & Bound Greedy with Exit](#branch--bound-greedy-with-exit)
-10. [Branch & Bound Greedy with Heuristic](#branch--bound-greedy-with-heuristic)
-11. [Branch & Bound Heuristic](#branch--bound-heuristic)
-12. [A* Algorithm](#a-algorithm)
+## Graph Structure
+The following graph serves as the foundation for all implemented search algorithms:
 
-## Algorithms
-
-### British Museum Search
-- **Description**: A search algorithm inspired by the British Museum, focusing on optimizing the search for items within a vast dataset.
-- **Use Cases**: Suitable for scenarios where structured search within a large dataset is required.
-
-### Depth-First Search (DFS)
-- **Description**: A traversal algorithm that explores as far as possible along each branch before backtracking.
-- **Complexity**: O(V + E) where V is the number of vertices and E is the number of edges.
-- **Use Cases**: Useful for pathfinding, topological sorting, and solving puzzles.
-
-### Breadth-First Search (BFS)
-- **Description**: A traversal algorithm that explores all neighbors at the present depth prior to moving on to nodes at the next depth level.
-- **Complexity**: O(V + E).
-- **Use Cases**: Finding the shortest path in unweighted graphs and level-order traversal of trees.
-
-### Hill Climbing
-- **Description**: An optimization algorithm that continuously moves towards increasing value (uphill) until no higher value can be found.
-- **Use Cases**: Used in mathematical optimization problems, artificial intelligence, and game development.
-
-### Beam Search
-- **Description**: A search algorithm that explores a graph by expanding the most promising nodes, keeping a limited number of paths (the beam width).
-- **Use Cases**: Often used in natural language processing and AI.
-
-### Oracle
-- **Description**: An algorithm that leverages a "black box" for obtaining solutions, often used in theoretical computer science.
-- **Use Cases**: Analyzing decision-making processes and optimizing queries.
-
-### Branch and Bound (B&B)
-- **Description**: An optimization technique that divides the problem into smaller subproblems and systematically explores branches to find the optimal solution.
-- **Use Cases**: Solving combinatorial optimization problems.
-
-### Branch & Bound Greedy
-- **Description**: A variant of the B&B algorithm that employs a greedy approach to make local optimal choices.
-- **Use Cases**: Used in optimization problems where a quick, good-enough solution is acceptable.
-
-### Branch & Bound Greedy with Exit
-- **Description**: An extension of the greedy approach that allows for early exits from the search if a satisfactory solution is found.
-- **Use Cases**: Applicable in real-time systems where time constraints are critical.
-
-### Branch & Bound Greedy with Heuristic
-- **Description**: Combines the greedy approach with heuristics to guide the search process.
-- **Use Cases**: Useful in scenarios where heuristics can significantly reduce the search space.
-
-### Branch & Bound Heuristic
-- **Description**: An approach that uses heuristics to determine the most promising nodes to explore in the B&B algorithm.
-- **Use Cases**: Enhancing the efficiency of traditional B&B algorithms in large search spaces.
-
-### A* Algorithm
-- **Description**: A pathfinding algorithm that combines the strengths of Dijkstra's Algorithm and heuristics to find the shortest path efficiently.
-- **Complexity**: O(E) where E is the number of edges.
-- **Use Cases**: Widely used in AI for navigation and pathfinding in games.
-
-## Getting Started
-
-### Prerequisites
-- Python 3.x
-- Required libraries (if any, specify here)
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/algorithms.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd algorithms
-   ```
-
-### Usage
-To run each algorithm, execute the corresponding Python script:
-```bash
-python <algorithm_name>.py
+```python
+graph = {
+    'S': {'A': 1, 'B': 2, 'C': 5},
+    'A': {'D': 3, 'S': 1, 'B': 1},
+    'B': {'A': 1, 'S': 2},
+    'C': {'E': 4, 'S': 5},
+    'D': {'A': 3, 'G': 2},
+    'E': {'C': 4},
+    'G': {'D': 2}
+}
 ```
 
-### Contributing
-Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
+### Heuristic Values
+The heuristic values assigned to the nodes are as follows:
 
-### License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```python
+heuristic = {
+    'S': 6,
+    'A': 4,
+    'B': 3,
+    'C': 5,
+    'D': 1,
+    'E': 3,
+    'G': 0
+}
+```
 
----
+## Search Algorithms
+Each algorithm initiates from node \( S \) and aims to reach node \( G \), determining the most efficient path based on distinct methodologies.
 
-Feel free to adjust the descriptions and details as needed!
+### Implemented Algorithms
+1. **British Museum Search**  
+   A comprehensive approach that evaluates all potential paths.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+2. **Depth-First Search (DFS)**  
+   This method delves as deeply as possible into each branch before backtracking.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+3. **Breadth-First Search (BFS)**  
+   Explores all nodes at the current depth level prior to advancing to the next level.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+4. **Hill Climbing**  
+   A greedy technique that consistently expands the node with the lowest heuristic value.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+5. **Beam Search**  
+   Maintains a limited number of top nodes at each level to enhance memory efficiency.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+6. **Oracle Search**  
+   A theoretical search method that operates with complete knowledge of the shortest path.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+7. **Branch and Bound (B&B)**  
+   This technique investigates all possible paths while eliminating those exceeding the best-known cost.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+8. **Branch and Bound Greedy**  
+   Utilizes a heuristic to direct the search process while also trimming paths.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+9. **Branch and Bound Greedy with Exit**  
+   Terminates immediately upon reaching the goal node.  
+   **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+10. **Branch and Bound Greedy + Heuristic**  
+    Aggressively combines cost and heuristic for efficient pruning of the search space.  
+    **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+11. **Branch and Bound with Heuristic**  
+    Merges the B&B methodology with heuristic values, exploring nodes based on both factors.  
+    **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+12. **A* Algorithm**  
+    An informed search technique that incorporates both path costs and heuristics to identify the optimal route.  
+    **Output:** `Best Path: ['S', 'A', 'D', 'G'] with cost 6`
+
+## Minimax Algorithm & Alpha-Beta Pruning
+
+### Description
+The Minimax Algorithm serves as a foundational approach in decision-making for two-player games. The Maximizer focuses on maximizing their score, while the Minimizer aims to minimize it.
+
+**Alpha-Beta Pruning** enhances the Minimax algorithm's efficiency by avoiding the evaluation of branches that will not influence the final decision.
+
+### Mechanism
+- **Minimax Algorithm:**
+  - Maximizing Player: Attempts to increase the value at each node.
+  - Minimizing Player: Seeks to decrease the value at each node.
+  - Values are propagated from leaf nodes back to the root.
+
+- **Alpha-Beta Pruning:**
+  - Alpha: The maximum score that the Maximizer can assure.
+  - Beta: The minimum score that the Minimizer can assure.
+  - Branches are pruned when alpha ≥ beta, resulting in greater efficiency.
+
+### Example Tree Structure
+Both algorithms utilize the following tree for their evaluations:
+
+```
+          N1
+        /    \
+      N2      N3
+     /  \    /  \
+   N4   N5  N6   N7
+  / \   / \  / \  / \
+ 1   4 7   2 3   0 6   5
+```
+
+### Output
+- **Minimax Algorithm:** Optimal value calculated: **5**
+- **Alpha-Beta Pruning:** Optimal value achieved: **5**
+
+Both algorithms arrive at the same optimal value, though Alpha-Beta Pruning operates more effectively by eliminating non-critical branches.
