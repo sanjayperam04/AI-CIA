@@ -1,7 +1,3 @@
-Here's a sample README file for your 12 algorithms. You can customize it as needed for your project:
-
----
-
 # Algorithm Implementations
 
 This repository contains implementations of various algorithms commonly used in search and optimization problems. Each algorithm is described below, along with its purpose and key characteristics.
